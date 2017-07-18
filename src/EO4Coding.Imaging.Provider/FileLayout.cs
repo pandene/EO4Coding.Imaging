@@ -15,30 +15,30 @@ namespace EO4Coding.Imaging
     {
         const char _delimeter = '~';
 
-        IImageProvider _imageFactory;
+        IImageProvider _imageProvider;
 
-        public FileLayout(IImageProvider imageFactory,string name,Size size)
+        public FileLayout(IImageProvider imageProvider,string name,Size size)
         {
-            Init(imageFactory, name, size);
+            Init(imageProvider, name, size);
         }
-        public FileLayout(IImageProvider imageFactory, string name, string size)
+        public FileLayout(IImageProvider imagProvider, string name, string size)
         {
-            Init(imageFactory, name, imageFactory.GetSize(size));
+            Init(imagProvider, name, imagProvider.GetSize(size));
         }
-        public FileLayout(IImageProvider imageFactory, string name)
+        public FileLayout(IImageProvider imageProvider, string name)
         {
-            Init(imageFactory, name, null);
+            Init(imageProvider, name, null);
         }
 
         /// <summary>
         /// Construct the full name
         /// </summary>
-        /// <param name="imageFactory">factory to use for construction,will use its sizes,Path and CachePath</param>
+        /// <param name="imageProvider">factory to use for construction,will use its sizes,Path and CachePath</param>
         /// <param name="name">the file name, this can be the Original name or a name that includes the size specification</param>
         /// <param name="size"> Size the the fullname will represent</param>
-        void Init(IImageProvider imageFactory,string name,Size size )
+        void Init(IImageProvider imageProvider,string name,Size size )
         {
-            _imageFactory = imageFactory;
+            _imageProvider = imageProvider;
             SetNames(name, size);
         }
 
@@ -108,20 +108,20 @@ namespace EO4Coding.Imaging
                 {
                     Size = GetSize(fs[1]);
                 }
-                else Size = _imageFactory.OriginalSize;
+                else Size = _imageProvider.OriginalSize;
             }
             else Size = size;
 
-            IsOriginal = Size == _imageFactory.OriginalSize;
+            IsOriginal = Size == _imageProvider.OriginalSize;
             if (IsOriginal)
             {
                 Name = OriginalName;
-                FullName = $"{_imageFactory.ImageUrl}{Name}";
+                FullName = $"{_imageProvider.ImageUrl}{Name}";
             }
             else
             {
                 Name = $"{fs[0]}{_delimeter}{Size?.Name}.{Extension}";
-                FullName = $"{_imageFactory.ImageUrl}{Name}";
+                FullName = $"{_imageProvider.ImageUrl}{Name}";
             }
 
         }
@@ -130,7 +130,7 @@ namespace EO4Coding.Imaging
 
         Size GetSize(string size)
         {
-            return _imageFactory.GetSize(size);
+            return _imageProvider.GetSize(size);
         }
 
         public override string ToString()
