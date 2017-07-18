@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EO4Coding.Imaging
 {
-    public interface IImageFactory
+    public interface IImageProvider
     {
         /// <summary>
         /// FileName as presented on the physical drive

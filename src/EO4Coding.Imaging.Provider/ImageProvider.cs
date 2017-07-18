@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace EO4Coding.Imaging
 {
-    public class ImageFactory:IImageFactory
+    public class ImageProvider:IImageProvider
     {
         string _imageDirectory;
         string _cacheDirectory;
         string _imageUrl;
         Dictionary<string, Size> _sizes = new Dictionary<string, Size>();
 
-        public ImageFactory(string imageUrl,string imageDirectory ,string cacheDirectory=null,Size[] sizes=null)
+        public ImageProvider(string imageUrl,string imageDirectory ,string cacheDirectory=null,Size[] sizes=null)
         {
             if (string.IsNullOrEmpty(cacheDirectory)) cacheDirectory = Path.Combine(imageDirectory, @"cache\");
             _imageDirectory = !imageDirectory.EndsWith(@"\") && imageDirectory.Length>0?imageDirectory+@"\":imageDirectory;//?.TrimEnd('\\');
@@ -30,8 +30,8 @@ namespace EO4Coding.Imaging
             sizes=sizes ?? new Size[]
                 {
                     new Size() {Name="original",MaxX=0,MaxY=0}, //use 0 not to change the original size, this is also registered under the original size and will return the image as is
-                    new Size() {Name="original-cached",MaxX=0,MaxY=0}, //this return the original size, but it wil go through the resizing process which in most cases result in a smaller file size for the same image size, the compression algorithm used seem to compress more/beter, suse test cases to compare size
-                    new Size() {Name="xlarge",MaxX=1900,MaxY=1200 },
+                    new Size() {Name="original-cached",MaxX=0,MaxY=0}, //this return the original size, but it wil go through the resizing process which in most cases result in a smaller file size for the same image size, the compression algorithm used seem to compress more/beter, use the test cases to compare size. Test1.jpg in my example reduced from 14MB to 2.5MB using the same size
+                    new Size() {Name="xlarge",MaxX=1900,MaxY=1200 },//Ex:name~xlarge.jpg
                     new Size() {Name="large",MaxX=1024,MaxY=768 },
                     new Size() {Name="medium",MaxX=800,MaxY=600 },
                     new Size() {Name="small",MaxX=300,MaxY=240 },

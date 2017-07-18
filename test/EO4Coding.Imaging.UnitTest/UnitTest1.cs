@@ -9,7 +9,7 @@ namespace EO4Coding.Imaging.UnitTest
     {
 
 
-        EO4Coding.Imaging.ImageFactory imgf;// = new VaVroom.Imaging.ImageFactory();
+        EO4Coding.Imaging.ImageProvider imgf;// = new VaVroom.Imaging.ImageFactory();
 
         /// <summary>
         /// Directory.GetCurrentDirectory()  //curent dir
@@ -57,7 +57,7 @@ namespace EO4Coding.Imaging.UnitTest
 
 
 
-            imgf = new ImageFactory("~/Images/Vehicles", "Image");
+            imgf = new ImageProvider("~/Images/Vehicles", "Image");
 
 
         }

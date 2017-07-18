@@ -12,10 +12,10 @@ namespace EO4Coding.Imaging
     /// </summary>
     public class FileStats
     {
-        IImageFactory _imageFactory;
+        IImageProvider _imageFactory;
 
 
-        internal FileStats(IImageFactory factory, IEnumerable<string> dbRefs)
+        internal FileStats(IImageProvider factory, IEnumerable<string> dbRefs)
         {
             AllDbImages = dbRefs;
             _imageFactory = factory;

@@ -15,17 +15,17 @@ namespace EO4Coding.Imaging
     {
         const char _delimeter = '~';
 
-        IImageFactory _imageFactory;
+        IImageProvider _imageFactory;
 
-        public FileLayout(IImageFactory imageFactory,string name,Size size)
+        public FileLayout(IImageProvider imageFactory,string name,Size size)
         {
             Init(imageFactory, name, size);
         }
-        public FileLayout(IImageFactory imageFactory, string name, string size)
+        public FileLayout(IImageProvider imageFactory, string name, string size)
         {
             Init(imageFactory, name, imageFactory.GetSize(size));
         }
-        public FileLayout(IImageFactory imageFactory, string name)
+        public FileLayout(IImageProvider imageFactory, string name)
         {
             Init(imageFactory, name, null);
         }
@@ -36,7 +36,7 @@ namespace EO4Coding.Imaging
         /// <param name="imageFactory">factory to use for construction,will use its sizes,Path and CachePath</param>
         /// <param name="name">the file name, this can be the Original name or a name that includes the size specification</param>
         /// <param name="size"> Size the the fullname will represent</param>
-        void Init(IImageFactory imageFactory,string name,Size size )
+        void Init(IImageProvider imageFactory,string name,Size size )
         {
             _imageFactory = imageFactory;
             SetNames(name, size);

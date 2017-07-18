@@ -29,7 +29,7 @@ namespace EO4Coding.Imaging.WebSample
                 app.UseDeveloperExceptionPage();
             }
             EnsureImages(Path.Combine(env.WebRootPath, @"images\"));
-            IImageFactory imgfactory = new ImageFactory( "~/images/", Path.Combine(env.WebRootPath, @"images\"));
+            IImageProvider imgfactory = new ImageProvider( "~/images/", Path.Combine(env.WebRootPath, @"images\"));
             app.Map("/images", (appBuilder) =>
             {
                 appBuilder.Run(async context =>
