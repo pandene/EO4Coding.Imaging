@@ -1,6 +1,6 @@
 # EO4Coding.Imaging
-Image Resizing and caching for ASP.Net core middleware
-
+Image Resizing and caching for ASP.Net core middleware.
+For more detail visit http://wanderlustcoder.com/blog/2017/07/19/image-resizing-and-disk-caching-in-aspnet-core
 ## Getting started
 ### Run unit test under test directory to see the concepts and ideas on how the ImageProvider works.
 ### The WebSample only return `Hello world` for all urls except for the ones that maps to the images url.
