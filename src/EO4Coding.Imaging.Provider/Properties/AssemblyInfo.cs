@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCompany("EO4Coding")]
 [assembly: AssemblyProduct("EO4Coding.Imaging")]
 [assembly: AssemblyTrademark("")]
-[assembly: AssemblyInformationalVersion("1.0.1-alpha")]
+[assembly: AssemblyInformationalVersion("1.0.2")]
 
 // Setting ComVisible to false makes the types in this assembly not visible
 // to COM components.  If you need to access a type in this assembly from

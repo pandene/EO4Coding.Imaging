@@ -1,4 +1,5 @@
-using ImageSharp;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
 using System;
 using System.IO;
 using Xunit;
@@ -22,7 +23,7 @@ namespace EO4Coding.Imaging.UnitTest
         public TestImaging()
         {
            
-            string resPath = @"..\..\..\..\..\..\EO4Codong.Imaging.Resources\Images\";            //string rootPath = System.Environment.CurrentDirectory;
+            string resPath = @"..\..\..\..\..\..\EO4Coding.Images.Resources\Images\";            //string rootPath = System.Environment.CurrentDirectory;
             string imageDir = "image";
             if (!Directory.Exists(imageDir)) Directory.CreateDirectory(imageDir);
             string ti = Path.Combine(imageDir, "Test1.jpg");
@@ -119,7 +120,7 @@ namespace EO4Coding.Imaging.UnitTest
             string fn = imgf.EnsureFileAsync(fl).Result; //, this should have been a private/internal method but would not be able to test here
             Assert.Equal("Image\\cache\\Test1~small.jpg", fn); //Make sure the actual file name is as expected
             //using (FileStream stream = File.OpenRead(fn))
-            using(Image<Rgba32> img = Image.Load(fn)) // now load the filename and check the sizes
+            using(var img = Image.Load(fn)) // now load the filename and check the sizes
 
             {
                 //Image img = new Image(stream);
@@ -136,7 +137,7 @@ namespace EO4Coding.Imaging.UnitTest
             fl = new FileLayout(imgf, "Test4~thumbnail.jpg");
             fn = imgf.EnsureFileAsync(fl).Result;
             Assert.Equal("Image\\cache\\Test4~thumbnail.jpg", fn);
-            using (Image<Rgba32> img = Image.Load(fn)) //FileStream stream = File.OpenRead(fn))
+            using (var img = Image.Load(fn)) //FileStream stream = File.OpenRead(fn))
             {
                 //Image img = new Image(stream);
                 EO4Coding.Imaging.Size sz = imgf.GetSize("thumbnail");
@@ -150,7 +151,7 @@ namespace EO4Coding.Imaging.UnitTest
             fl = new FileLayout(imgf, "Test1~large.jpg");
             fn = imgf.EnsureFileAsync(fl).Result;
             Assert.Equal("Image\\cache\\Test1~large.jpg", fn);
-            using (Image<Rgba32> img = Image.Load(fn)) //FileStream stream = File.OpenRead(fn))
+            using (var img = Image.Load(fn)) //FileStream stream = File.OpenRead(fn))
             {
                 //Image img = new Image(stream);
                 EO4Coding.Imaging.Size sz = imgf.GetSize("large");
@@ -164,7 +165,7 @@ namespace EO4Coding.Imaging.UnitTest
             fl = new FileLayout(imgf, "Test1~xlarge.jpg");
             fn = imgf.EnsureFileAsync(fl).Result;
             Assert.Equal("Image\\cache\\Test1~xlarge.jpg", fn);
-            using (Image<Rgba32> img = Image.Load(fn)) //FileStream stream = File.OpenRead(fn))
+            using (var img = Image.Load(fn)) //FileStream stream = File.OpenRead(fn))
             {
                 //Image img = new Image(stream);
                 EO4Coding.Imaging.Size sz = imgf.GetSize("xlarge");
@@ -179,7 +180,7 @@ namespace EO4Coding.Imaging.UnitTest
             fl = new FileLayout(imgf, "Test1~original-cached.jpg");
             fn = imgf.EnsureFileAsync(fl).Result;
             Assert.Equal("Image\\cache\\Test1~original-cached.jpg", fn);
-            using (Image<Rgba32> img = Image.Load(fn)) //FileStream stream = File.OpenRead(fn))
+            using (var img = Image.Load(fn)) //FileStream stream = File.OpenRead(fn))
             {
                 //Image img = new Image(stream);
                 //VaVroom.Imaging.Size sz = imgf.GetSize("original-cached");
