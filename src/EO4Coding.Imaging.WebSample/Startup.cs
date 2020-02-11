@@ -29,13 +29,13 @@ namespace EO4Coding.Imaging.WebSample
                 app.UseDeveloperExceptionPage();
             }
             EnsureImages(Path.Combine(env.WebRootPath, @"images\"));
-            IImageProvider imgfactory = new ImageProvider( "~/images/", Path.Combine(env.WebRootPath, @"images\"));
+            IImageProvider imgProvider = new ImageProvider( "~/images/", Path.Combine(env.WebRootPath, @"images\"));
             app.Map("/images", (appBuilder) =>
             {
                 appBuilder.Run(async context =>
                 {
                     context.Response.Headers.Add("Content-Type", "image/jpeg");
-                    await imgfactory.WriteFileAsync(imgfactory.GetFileLayout(context.Request.Path), context.Response.Body);
+                    await imgProvider.WriteFileAsync(imgProvider.GetFileLayout(context.Request.Path), context.Response.Body);
                 });
             });
 

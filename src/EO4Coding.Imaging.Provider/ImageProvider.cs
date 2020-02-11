@@ -29,8 +29,12 @@ namespace EO4Coding.Imaging
         {
             sizes=sizes ?? new Size[]
                 {
-                    new Size() {Name="original",MaxX=0,MaxY=0}, //use 0 not to change the original size, this is also registered under the original size and will return the image as is
-                    new Size() {Name="original-cached",MaxX=0,MaxY=0}, //this return the original size, but it wil go through the resizing process which in most cases result in a smaller file size for the same image size, the compression algorithm used seem to compress more/beter, use the test cases to compare size. Test1.jpg in my example reduced from 14MB to 2.5MB using the same size
+                    //use 0 not to change the original size, this is also registered under the original size and will return the image as is
+                    new Size() {Name="original",MaxX=0,MaxY=0},
+                    //this return the original size, but it wil go through the resizing process which in most cases result in a smaller file size for the same image size. 
+                    //The compression algorithm used seem to compress more/beter, use the test cases to compare size. 
+                    //Test1.jpg in my example reduced from 14MB to 2.5MB using the same size
+                    new Size() {Name="original-cached",MaxX=0,MaxY=0}, 
                     new Size() {Name="xlarge",MaxX=1900,MaxY=1200 },//Ex:name~xlarge.jpg
                     new Size() {Name="large",MaxX=1024,MaxY=768 },
                     new Size() {Name="medium",MaxX=800,MaxY=600 },
