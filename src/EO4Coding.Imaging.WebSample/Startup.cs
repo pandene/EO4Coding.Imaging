@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System.IO;
+using Microsoft.Extensions.Hosting;
 
 namespace EO4Coding.Imaging.WebSample
 {
@@ -20,22 +21,21 @@ namespace EO4Coding.Imaging.WebSample
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            loggerFactory.AddConsole();
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
             EnsureImages(Path.Combine(env.WebRootPath, @"images\"));
-            IImageProvider imgProvider = new ImageProvider( "~/images/", Path.Combine(env.WebRootPath, @"images\"));
+
+            IImageProvider imgfactory = new ImageProvider("~/images/", Path.Combine(env.WebRootPath, @"images\"));
             app.Map("/images", (appBuilder) =>
             {
                 appBuilder.Run(async context =>
                 {
                     context.Response.Headers.Add("Content-Type", "image/jpeg");
-                    await imgProvider.WriteFileAsync(imgProvider.GetFileLayout(context.Request.Path), context.Response.Body);
+                    await imgfactory.WriteFileAsync(imgfactory.GetFileLayout(context.Request.Path), context.Response.Body);
                 });
             });
 
@@ -46,10 +46,13 @@ namespace EO4Coding.Imaging.WebSample
                 await context.Response.WriteAsync("Hello World!");
             });
         }
+    
+
+
 
         private void EnsureImages(string imageDir)
         {
-            string resPath =Path.Combine(imageDir, @"..\..\..\..\EO4Codong.Imaging.Resources\Images\");            //string rootPath = System.Environment.CurrentDirectory;
+            string resPath =Path.Combine(imageDir, @"..\..\..\..\..\EO4Coding.Images.Resources\Images\");            //string rootPath = System.Environment.CurrentDirectory;
             if (!Directory.Exists(resPath)) return;
 
                 if (!Directory.Exists(imageDir)) Directory.CreateDirectory(imageDir);

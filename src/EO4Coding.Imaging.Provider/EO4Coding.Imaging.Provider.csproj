@@ -1,30 +1,31 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.3</TargetFramework>
-    <AssemblyName>EO4Coding.ImageProvider</AssemblyName>
-    <PackageId>EO4Coding.ImageProvider</PackageId>
-    <PackageVersion>1.0.0-alpha1-0001</PackageVersion>
-    <Authors>Eben Olivier</Authors>
-    <Description>Provide asp.net core middleware for Image Caching and automatic resizing</Description>
-    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageReleaseNotes>Pre Release</PackageReleaseNotes>
-    <Copyright>Copyright 2017 (c) Eben Olivier. All rights reserved.</Copyright>
-    <PackageTags>Imaging Resizing file Caching</PackageTags>
-    <RootNamespace>EO4Coding.Imaging.Provider</RootNamespace>
-    <ApplicationIcon>20170522_184826.ico</ApplicationIcon>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\netstandard1.3\EO4Coding.Imaging.xml</DocumentationFile>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\netstandard1.3\EO4Coding.Imaging.Provider.xml</DocumentationFile>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.2-beta1</Version>
+    <PackageIcon>20170522_184826.ico</PackageIcon>
+    <PackageIconUrl />
+    <RepositoryUrl>https://github.com/pandene/EO4Coding.Imaging</RepositoryUrl>
+    <RepositoryType>GitHub</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ImageSharp" Version="1.0.0-alpha9-00169" />
+    <Compile Remove="Properties\AssemblyInfo.cs" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0-beta0007" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="20170522_184826.ico">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  
+  
+  
 </Project>

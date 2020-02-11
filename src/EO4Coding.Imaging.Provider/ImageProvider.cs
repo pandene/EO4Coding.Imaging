@@ -1,5 +1,8 @@
 ﻿//using ImageProcessorCore;
-using ImageSharp;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Processing;
+using SixLabors.ImageSharp.PixelFormats;
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -127,7 +130,7 @@ namespace EO4Coding.Imaging
                 //using (Stream output = File.OpenWrite(fn))
                 //{
                     decimal fctr;
-                using (Image<Rgba32> img = Image.Load(org))
+                using (Image img = Image.Load(org))
                 {
                     if (fileLayout.Size.MaxX <= 0 || fileLayout.Size.MaxY <= 0) // Use actual size but cahce
                         fctr = 1;
@@ -138,7 +141,10 @@ namespace EO4Coding.Imaging
                         fctr = xr > yr ? xr : yr;
                     }
                     if (fctr > 1)
-                        img.Resize((int)(img.Width / fctr), (int)(img.Height / fctr)).Save(fn);  //Save(output,Rgba32);
+                    {
+                        img.Mutate(x => x.Resize((int)(img.Width / fctr), (int)(img.Height / fctr)));
+                        img.Save(fn);  //Save(output,Rgba32);
+                    }
                     else
                         img.Save(fn);//Save(output); //Already smaller as requested size, save as is
 
